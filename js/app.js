@@ -2,8 +2,36 @@ let userConnexion = {
     init: function(){
         // Mettre en place un écouteur sur la soumission du formulaire (type "submit")
         let formElement = document.querySelector('#login-form');
-        formElement.addEventListener('submit', userConnexion.handleFormSubmit)
+        formElement.addEventListener('submit', userConnexion.handleFormSubmit);
+        
+        let identifiant = document.querySelector('#field-username');
+        let password = document.querySelector('#field-password');
+
+        identifiant.addEventListener('blur', function(event) {
+            let identifiantInput = identifiant.value;
+            if(identifiantInput.length >= 3){
+                // event.target.style.border = '#008000 1px solid';
+                identifiant.classList.add('valid');
+            }
+            else {
+                // event.target.style.border = '#ff0000 1px solid';
+                identifiant.classList.add('invalid');
+            }
+        });
+
+        password.addEventListener('blur', function(event) {
+            let passwordInput = password.value;
+            if(passwordInput.length >= 3){
+                // event.target.style.border = '#008000 1px solid';
+                password.classList.add('valid');
+            }
+            else {
+                // event.target.style.border = '#ff0000 1px solid';
+                password.classList.add('valid');
+            }
+        });
     },
+        
     // On intercepte l'événement
     handleFormSubmit: function(event){
         // On annule la soumission du form (comportement par défaut)
@@ -17,11 +45,6 @@ let userConnexion = {
         // Sa valeur, via "value"
         let passwordInput = password.value;
 
-        /* console.log(identifiantInput);
-        console.log(identifiantInput.length);
-        console.log(passwordInput);
-        console.log(passwordInput.length); */
-
         if (identifiantInput.length >= 3 && passwordInput.length >= 3) {
             console.log('OK');
         }
@@ -29,6 +52,7 @@ let userConnexion = {
             console.log('Identifiant trop court');
             // Cibler l'id de la div voulue
             let divError1 = document.querySelector('#errors');
+            divError1.style.display = 'block';
             // Créer un élément p et le ranger dans une variable
             let newParagraphe1 = document.createElement('p');
             // Ajouter un texte à cette variable
@@ -39,6 +63,7 @@ let userConnexion = {
         else if (passwordInput.length < 3) {
             console.log('Mot de passe trop court');
             let divError2 = document.querySelector('#errors');
+            divError2.style.display = 'block';
             let newParagraphe2 = document.createElement('p');
             newParagraphe2.textContent = 'Mot de passe doit contenir au minimum 3 caractères.';
             divError2.appendChild(newParagraphe2);
@@ -50,6 +75,7 @@ let userConnexion = {
 
 userConnexion.init();
 
+// divError1.style.display = 'block';
 
 
 
@@ -108,3 +134,10 @@ userConnexion.init();
 }
 
 addelement(); */
+
+// Quand on change de champ (addeventlistener)
+    // On vérifie si > 3 caractères (condition if)
+        // On colore en vert 
+    // Sinon (else)
+        // On colore en rouge
+
