@@ -24,6 +24,7 @@ let userConnexion = {
             if(passwordInput.length >= 3){
                 // event.target.style.border = '#008000 1px solid';
                 password.classList.add('valid');
+                
             }
             else {
                 // event.target.style.border = '#ff0000 1px solid';
@@ -38,10 +39,10 @@ let userConnexion = {
         event.preventDefault();
         // Récupérer la valeur du champ Identifiant
         let identifiant = document.querySelector('#field-username');
-        // Sa valeur, via sa propriété "value"
-        let identifiantInput = identifiant.value;
         // Récupérer la valeur du champ Mot de passe
         let password = document.querySelector('#field-password');
+        // Sa valeur, via sa propriété "value"
+        let identifiantInput = identifiant.value;
         // Sa valeur, via "value"
         let passwordInput = password.value;
 
@@ -68,6 +69,14 @@ let userConnexion = {
             newParagraphe2.textContent = 'Mot de passe doit contenir au minimum 3 caractères.';
             divError2.appendChild(newParagraphe2);
         }
+        else if (passwordInput.length < 3 && identifiantInput.length < 3) {
+            // console.log('Mot de passe trop court');
+            let divError3 = document.querySelector('#errors');
+            divError3.style.display = 'block';
+            let newParagraphe3 = document.createElement('p');
+            newParagraphe3.textContent = 'Mot de passe et identifiant doivent contenir au minimum 3 caractères.';
+            divError3.appendChild(newParagraphe3);
+        }
             
     }
     
@@ -76,68 +85,3 @@ let userConnexion = {
 userConnexion.init();
 
 // divError1.style.display = 'block';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let identifiant = document.querySelector('#field-username').value;
-
-
-// identifiant = identifiant.preventDefault;
-// console.log(identifiant.length);
-// e.preventDefault();
-
-// La fonction doit récuperer l'input
-// Elle doit ensuite vérifier si la chaine dépasse les 3 caractères
-// Si ça n'est pas le cas, alors on affiche la bulle indiquant qu'il faut dépasser 3 caractères
-// Si c'est le cas, passer au password et idem
-
-
-/* function nbCaractere() {
-    // event.preventDefault();
-
-    let identifiant = document.querySelector('#field-username');
-    let identifiantInput = identifiant.value;
-    identifiantInput.preventDefault();
-
-    if (identifiantInput.length > 3) {
-        console.log('OK');
-    }
-    else if (identifiantInput.length <= 3) {
-        console.log('Trop court');
-    }
-    
-} */
-// cette fonction va ajouter la "bulle"
-// nbCaractere();
-
-/* function addelement(){
-    let buttonelement = document.querySelector('#login-submit');
-    buttonelement.addEventListener('submit', nbCaractere);
-}
-
-addelement(); */
-
-// Quand on change de champ (addeventlistener)
-    // On vérifie si > 3 caractères (condition if)
-        // On colore en vert 
-    // Sinon (else)
-        // On colore en rouge
-
